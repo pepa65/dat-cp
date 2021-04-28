@@ -3,17 +3,17 @@
 NODE_ABI="node-64"
 VERSION=$(node -pe "require('./package.json').version")
 
+ls -l releases
 rm -rf dist
 mkdir dist
-ls -l releases
 
 mkdir releases/dcp-$VERSION-linux-x64
 mkdir releases/dcp-$VERSION-macos-x64
 mkdir releases/dcp-$VERSION-win-x64
 
-mv releases/dcp-linux-x64 releases/dcp-$VERSION-linux-x64/dcp
-mv releases/dcp-macos-x64 releases/dcp-$VERSION-macos-x64/dcp
-mv releases/dcp-win-x64.exe releases/dcp-$VERSION-win-x64/dcp.exe
+mv releases/dcp-linux releases/dcp-$VERSION-linux-x64/dcp
+mv releases/dcp-macos releases/dcp-$VERSION-macos-x64/dcp
+mv releases/dcp-win.exe releases/dcp-$VERSION-win-x64/dcp.exe
 
 cp LICENSE.md releases/dcp-$VERSION-linux-x64/
 cp LICENSE.md releases/dcp-$VERSION-macos-x64/
