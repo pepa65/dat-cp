@@ -10,14 +10,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - dependencies-{{ checksum "package.json" }}
+          - dependencies-{{checksum package.json}}
       - run:
           name: Install dependencies
           command: npm i
       - save_cache:
           paths:
             - node_modules
-          key: dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{checksum package.json}}
       - run:
           name: Run tests
           command: npm t
@@ -30,14 +30,14 @@ jobs:
       - checkout
       - restore_cache:
           keys:
-          - dependencies-{{ checksum "package.json" }}
+          - dependencies-{{checksum package.json}}
       - run:
           name: Install dependencies
           command: npm i
       - save_cache:
           paths:
             - node_modules
-          key: dependencies-{{ checksum "package.json" }}
+          key: dependencies-{{checksum package.json}}
       - run:
           name: Create packages
           command: npm run package
