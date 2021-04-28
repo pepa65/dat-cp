@@ -6,7 +6,7 @@ import logger from './lib/logger'
 import receive from './receive'
 import pkgJson from '../package.json'
 
-program.on('-h | --help', function() {
+program.on('--help', function() {
   console.log('Examples:')
   console.log('    Send files/directories:       dcp foo_file bar_directory\n')
   console.log('    Receive files/directories:    dcp <public key from sender>\n')
@@ -16,7 +16,6 @@ program
   .version(pkgJson.version)
   .usage('[options] {files... | key}')
   .description('Dat Copy v'+pkgJson.version+' - Remote file transfer, powered by the Hypercore protocol')
-  .option('-V | --version', 'Output the version number.')
   .option('-n, --dry-run', 'show what would have been transferred.')
   .option('-P, --skip-prompt', 'automatically download without a prompt.')
   .option('-v, --verbose', 'verbose mode: output more information.')
