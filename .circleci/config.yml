@@ -43,14 +43,10 @@ jobs:
           command: npm run package
       - run:
           name: Save current version number
-          command: |
-            CURRENT_VERSION=$(npm show dat-cp version)
-            echo $CURRENT_VERSION > current-version
+          command: npm show dat-cp version >current-version
       - run:
           name: Save new version number
-          command: |
-            NEW_VERSION=$(cat package.json | grep version | head -1 | awk -F: '{ print $2 }' | sed 's/[",]//g')
-            echo $NEW_VERSION > new-version
+          command: grep '"version":' package.json |cut -d'"' -f4 >new-version
       - persist_to_workspace:
           root: ~/repo
           paths: .
@@ -67,16 +63,13 @@ jobs:
           command: |
             CURRENT_VERSION=$(cat current-version)
             NEW_VERSION=$(cat new-version)
-
             echo "curr=$CURRENT_VERSION, new=$NEW_VERSION"
-
-            if [ "$CURRENT_VERSION" = "$NEW_VERSION" ]; then
-              echo "Not a new release, exiting"
-              exit
+            if [ "$CURRENT_VERSION" = "$NEW_VERSION" ]
+            then echo "Not a new release, exiting"
+            else
+              echo "$NPM_RC" >~/.npmrc
+              npm publish
             fi
-
-            echo "$NPM_RC" > ~/.npmrc
-            npm publish
 
   publish-github-release:
     docker:
@@ -90,17 +83,13 @@ jobs:
           command: |
             CURRENT_VERSION=$(cat current-version)
             NEW_VERSION=$(cat new-version)
-
             echo "curr=$CURRENT_VERSION, new=$NEW_VERSION"
-
-            if [ "$CURRENT_VERSION" = "$NEW_VERSION" ]; then
-              echo "Not a new release, exiting"
-              exit
+            if [ "$CURRENT_VERSION" = "$NEW_VERSION" ]
+            then echo "Not a new release, exiting"
+            else
+              go get github.com/tcnksm/ghr
+              ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -c $CIRCLE_SHA1 -delete $NEW_VERSION ./dist/
             fi
-
-            go get github.com/tcnksm/ghr
-
-            ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${NEW_VERSION} ./dist/
 
 workflows:
   version: 2
