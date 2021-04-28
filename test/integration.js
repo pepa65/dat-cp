@@ -50,18 +50,6 @@ describe('Integration', function() {
     expect(getOutFiles('dirs/dir2/dir3')).to.deep.equal(['fizz.txt'])
   })
 
-  it('should fail when sending dir without recursive', function (done) {
-    (async () => {
-      this.timeout(5000)
-
-      try {
-        await spawnSend('test/fixtures/dirs')
-      } catch (err) {
-        done()
-      }
-    })()
-  })
-
   it('should not error when redownloading same files', async function () {
     this.timeout(10000)
 
@@ -93,15 +81,6 @@ describe('Integration', function() {
     expect(getOutFiles('dir1')).to.deep.equal(['hello.txt'])
     expect(getOutFiles('dir2')).to.deep.equal(['dir3', 'foo.txt'])
     expect(getOutFiles('dir2/dir3')).to.deep.equal(['fizz.txt'])
-  })
-
-  it('should skip dirs if send/receive multiple without recursive', async function () {
-    this.timeout(10000)
-
-    const key = await spawnSend('test/fixtures/dirs/dir2/foo.txt test/fixtures/dirs/dir2/dir3')
-    await spawnRcv(`${key} --skip-prompt`)
-
-    expect(getOutFiles()).to.deep.equal(['foo.txt'])
   })
 
   it('should skip non files/dirs', async function () {

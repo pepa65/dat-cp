@@ -76,25 +76,9 @@ describe('Send', function() {
     })()
   })
 
-  it('should fail if upload dir without recursive', (done) => {
-    (async () => {
-      const dat = await Dat()
-      const sendDatCp = new DatCp(dat, {})
-
-      try {
-        await sendDatCp.upload(['test/fixtures/dirs'])
-      } catch (e) {
-        expect(e).to.equal('exit')
-        expect(this.exitSpy.calledOnceWith(1)).to.be.true
-        expect(this.errorSpy.calledWith('No files to copy.')).to.be.true
-        done()
-      }
-    })()
-  })
-
   it('should upload dir with recursive', async () => {
     const dat = await Dat()
-    const sendDatCp = new DatCp(dat, {recursive: true})
+    const sendDatCp = new DatCp(dat, {})
     await sendDatCp.upload(['test/fixtures/dirs/dir1'])
 
     expect(sendDatCp.files).to.equal(2)
@@ -105,7 +89,7 @@ describe('Send', function() {
 
   it('should upload multiple dirs with recursive', async () => {
     const dat = await Dat()
-    const sendDatCp = new DatCp(dat, {recursive: true})
+    const sendDatCp = new DatCp(dat, {})
     await sendDatCp.upload(['test/fixtures/dirs'])
 
     expect(sendDatCp.files).to.equal(7)
@@ -116,7 +100,7 @@ describe('Send', function() {
 
   it('should upload a dirs contents if specified with /', async () => {
     const dat = await Dat()
-    const sendDatCp = new DatCp(dat, {recursive: true})
+    const sendDatCp = new DatCp(dat, {})
     await sendDatCp.upload(['test/fixtures/dirs/'])
 
     expect(sendDatCp.files).to.equal(6)
@@ -128,7 +112,7 @@ describe('Send', function() {
   it('should dry-run upload directories with recursive', (done) => {
     (async () => {
       const dat = await Dat()
-      const sendDatCp = new DatCp(dat, {recursive: true, dryRun: true})
+      const sendDatCp = new DatCp(dat, {dryRun: true})
 
       try {
         await sendDatCp.upload(['test/fixtures/dirs'])
@@ -142,24 +126,9 @@ describe('Send', function() {
     })()
   })
 
-  it('should skip dirs if uploading multiple without recursive', async () => {
-    const dat = await Dat()
-    const sendDatCp = new DatCp(dat, {})
-    await sendDatCp.upload(['test/fixtures/dirs/dir2/foo.txt', 'test/fixtures/dirs/dir2/dir3'])
-
-    expect(sendDatCp.files).to.equal(1)
-
-    expect(this.infoSpy.firstCall.args[0].includes('Total: 1 files')).to.be.true
-    expect(this.warnSpy.calledWith(
-      'test/fixtures/dirs/dir2/dir3: Is a directory (not copied).'
-    )).to.be.true
-
-    expect(this.exitSpy.called).to.be.false
-  })
-
   it('should skip non files/dirs', async () => {
     const dat = await Dat()
-    const sendDatCp = new DatCp(dat, {recursive: true})
+    const sendDatCp = new DatCp(dat, {})
     await sendDatCp.upload(['test/fixtures/complex'])
 
     expect(sendDatCp.files).to.equal(2)

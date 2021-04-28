@@ -7,25 +7,18 @@ import receive from './receive'
 import pkgJson from '../package.json'
 
 program.on('--help', function() {
-  console.log('\nExample:')
-  console.log('\n    Send files from host A:')
-  console.log(`
-        > dcp foo.txt bar.txt
-  `)
-  console.log('    Receive files on host B:')
-  console.log(`
-        > dcp <generated public key>
-  `)
+  console.log('\nExamples:')
+  console.log('\n    Send files/directories:  dcp foo_file bar_directory\n')
+  console.log('\n    Receive files/directories:  dcp <public key from sender>\n')
 })
 
 program
   .version(pkgJson.version)
-  .usage('[options] {files ... | key}')
-  .description('Dat Copy - remote file copy, powered by the dat protocol.')
-  .option('-r, --recursive', 'recursively copy directories')
-  .option('-n, --dry-run', 'show what files would have been copied')
-  .option('--skip-prompt', 'automatically download without a prompt')
-  .option('-v, --verbose', 'verbose mode - prints extra debugging messages')
+  .usage('[options] {files... | key}')
+  .description('dcp - Remote file copy, powered by the Dat protocol.')
+  .option('-n | --dry-run', 'Show what would have been transferred')
+  .option('-P | --skip-prompt', 'Automatically download without a prompt')
+  .option('-v | --verbose', 'Verbose mode: output more information')
   .parse(process.argv)
 
 if (!process.argv.slice(2).length || !program.args.length) {

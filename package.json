@@ -1,7 +1,7 @@
 {
   "name": "dat-cp",
-  "version": "0.7.8",
-  "description": "Dat Copy - remote file copy, powered by the dat protocol",
+  "version": "0.7.9",
+  "description": "dat-cp - Remote file copy, powered by the Dat protocol",
   "engines": {
     "node": ">=6.0.0"
   },
@@ -26,6 +26,7 @@
     ],
     "targets": [
       "node10-linux-x64",
+      "node10-linux-armv7",
       "node10-macos-x64",
       "node10-win-x64"
     ]
@@ -44,9 +45,9 @@
     ]
   },
   "author": "Tom Watson <tom@tomjwatson.com>",
-  "repository": "tom-james-watson/dat-cp",
-  "homepage": "https://github.com/tom-james-watson/dat-cp",
-  "bugs": "https://github.com/tom-james-watson/dat-cp/issues",
+  "repository": "pepa65/dat-cp",
+  "homepage": "https://github.com/pepa65/dat-cp",
+  "bugs": "https://github.com/pepa65/dat-cp/issues",
   "license": "MIT",
   "dependencies": {
     "append-tree": "^2.4.4",

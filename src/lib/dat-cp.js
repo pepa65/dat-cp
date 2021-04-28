@@ -67,11 +67,6 @@ export default class DatCp {
   }
 
   async ensureDirValid(path, stats) {
-    if (!this.options.recursive) {
-      logger.warn(`${path}: Is a directory (not copied).`)
-      return
-    }
-
     if (path[path.length - 1] !== '/') {
       this.countPath(path, stats)
     }
@@ -105,10 +100,6 @@ export default class DatCp {
   }
 
   async uploadDir(path, datPath) {
-    if (!this.options.recursive) {
-      return
-    }
-
     // If a source dir ends with `/`, copy its contents, not the dir itself
     if (path[path.length - 1] !== '/') {
       datPath = nodePath.join(datPath, nodePath.parse(path).base)

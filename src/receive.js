@@ -25,7 +25,7 @@ export default async function receive(key, options) {
 
   await datCpDownload.download()
 
-  if (options.skipPrompt || datCpDownload.files > 30) {
+  if (options.skipPrompt || datCpDownload.files > 20) {
     datCpDownload.printTotal()
   }
 

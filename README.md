@@ -68,27 +68,19 @@ Simply extract the zip and move the `dcp[.exe]` binary to a folder in your path,
 ## Usage
 
 ```
-Usage: dcp [options] {files ... | key}
+Dat Copy - Remote file copy, powered by the Dat protocol.
 
-Dat Copy - remote file copy, powered by the dat protocol.
+Usage: dcp [options] {files... | key}
+  Options:
+    -V / --version        Output version number
+    -n / --dry-run        Show what would have been transferred
+    -P / --skip-prompt    Automatically download without a prompt
+    -v / --verbose        Verbose mode: output more information
+    -h / --help           This help message
 
-Options:
-  -V, --version    output the version number
-  -r, --recursive  recursively copy directories
-  -n, --dry-run    show what files would have been copied
-  --skip-prompt    automatically download without a prompt
-  -v, --verbose    verbose mode - prints extra debugging messages
-  -h, --help       output usage information
-
-Example:
-
-    Send files from host A:
-
-        > dcp foo.txt bar.txt
-
-    Receive files on host B:
-
-        > dcp <generated public key>
+Examples:
+    Send files/directories:       dcp foo_file bar_directory
+    Receive files/directories:    dcp <public key from sender>
 ```
 
 ### Sending files
@@ -96,24 +88,23 @@ Example:
 Pass an arbitrary set of files or directories to `dcp` to be copied. Copy the generated public key and use it to receive the files on a different host.
 
 ```bash
-> dcp [-r] [-n] [-v] files ...
+dcp [-n] [-v] files ...
 ```
 
-* Use `-n`/`--dry-run` to see what files will be sent
-* Use `-r`/`--recursive` to recursively copy files within directories
-* Use `-v`/`--verbose` to print extra debugging information
+* Use `-n`/`--dry-run` to see what files would have been sent
+* Use `-v`/`--verbose` to output more information
 
 ### Receiving files
 
 Invoke `dcp` with the generated public key to receive the copied files.
 
 ```bash
-> dcp [-n] [-v] [--skip-prompt] <generated public key>
+dcp [-n] [-v] [-P] <generated public key>
 ```
 
-* Use `-n`/`--dry-run` to see what files will be received
-* Use `-v`/`--verbose` to print extra debugging information
-* Use `--skip-prompt` to skip the download prompt
+* Use `-n`/`--dry-run` to see what files would have been received
+* Use `-v`/`--verbose` to output more information
+* Use `-P`/`--skip-prompt` to skip the download prompt
 
 ## Development
 
