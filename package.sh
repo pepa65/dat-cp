@@ -5,6 +5,7 @@ VERSION=$(node -pe "require('./package.json').version")
 
 rm -rf dist
 mkdir dist
+ls -l releases
 
 mkdir releases/dcp-$VERSION-linux-x64
 mkdir releases/dcp-$VERSION-macos-x64
