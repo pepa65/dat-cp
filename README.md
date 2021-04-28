@@ -1,5 +1,4 @@
-`dcp` - Dat Copy
-========
+# `dcp' - Dat Copy v0.8.0
 
 > Remote file transfer, powered by the Hypercore protocol.
 
@@ -68,15 +67,16 @@ Simply extract the zip and move the `dcp[.exe]` binary to a folder in your path,
 ## Usage
 
 ```
-Dat Copy - Remote file transfer, powered by the Hypercore protocol.
-
 Usage: dcp [options] {files... | key}
-  Options:
-    -V / --version        Output version number
-    -n / --dry-run        Show what would have been transferred
-    -P / --skip-prompt    Automatically download without a prompt
-    -v / --verbose        Verbose mode: output more information
-    -h / --help           This help message
+
+Dat Copy v0.8.0 - Remote file transfer, powered by the Hypercore protocol
+
+Options:
+  -V, --version       output the version number
+  -n | --dry-run      show what would have been transferred.
+  -P | --skip-prompt  automatically download without a prompt.
+  -v | --verbose      verbose mode: output more information.
+  -h, --help          display help for command
 
 Examples:
     Send files/directories:       dcp foo_file bar_directory

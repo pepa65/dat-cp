@@ -6,19 +6,20 @@ import logger from './lib/logger'
 import receive from './receive'
 import pkgJson from '../package.json'
 
-program.on('--help', function() {
-  console.log('\nExamples:')
-  console.log('\n    Send files/directories:  dcp foo_file bar_directory\n')
-  console.log('\n    Receive files/directories:  dcp <public key from sender>\n')
+program.on('-h | --help', function() {
+  console.log('Examples:')
+  console.log('    Send files/directories:       dcp foo_file bar_directory\n')
+  console.log('    Receive files/directories:    dcp <public key from sender>\n')
 })
 
 program
   .version(pkgJson.version)
   .usage('[options] {files... | key}')
-  .description('dcp - Remote file transfer, powered by the Hypercore protocol')
-  .option('-n | --dry-run', 'Show what would have been transferred.')
-  .option('-P | --skip-prompt', 'Automatically download without a prompt.')
-  .option('-v | --verbose', 'Verbose mode: output more information.')
+  .description('Dat Copy v'+pkgJson.version+' - Remote file transfer, powered by the Hypercore protocol')
+  .option('-V | --version', 'Output the version number.')
+  .option('-n, --dry-run', 'show what would have been transferred.')
+  .option('-P, --skip-prompt', 'automatically download without a prompt.')
+  .option('-v, --verbose', 'verbose mode: output more information.')
   .parse(process.argv)
 
 if (!process.argv.slice(2).length || !program.args.length) {

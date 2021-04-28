@@ -1,7 +1,7 @@
 {
   "name": "dat-cp",
-  "version": "0.7.9",
-  "description": "Dat Copy - Remote file transfer, powered by the Hypercore protocol",
+  "version": "0.8.0",
+  "description": "Dat Copy v0.8.0 - Remote file transfer, powered by the Hypercore protocol",
   "engines": {
     "node": ">=6.0.0"
   },
