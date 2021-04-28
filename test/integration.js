@@ -40,7 +40,7 @@ describe('Integration', function() {
   it('should send/receive dirs', async function () {
     this.timeout(10000)
 
-    const key = await spawnSend('test/fixtures/dirs -r')
+    const key = await spawnSend('test/fixtures/dirs')
     await spawnRcv(`${key} --skip-prompt`)
 
     expect(getOutFiles()).to.deep.equal(['dirs'])
@@ -53,7 +53,7 @@ describe('Integration', function() {
   it('should not error when redownloading same files', async function () {
     this.timeout(10000)
 
-    const key = await spawnSend('test/fixtures/dirs -r')
+    const key = await spawnSend('test/fixtures/dirs')
     await spawnRcv(`${key} --skip-prompt`)
 
     expect(getOutFiles()).to.deep.equal(['dirs'])
@@ -74,7 +74,7 @@ describe('Integration', function() {
   it('should send/receive a dirs contents if specified with /', async function () {
     this.timeout(10000)
 
-    const key = await spawnSend('test/fixtures/dirs/ -r')
+    const key = await spawnSend('test/fixtures/dirs/')
     await spawnRcv(`${key} --skip-prompt`)
 
     expect(getOutFiles()).to.deep.equal(['dir1', 'dir2'])
@@ -86,7 +86,7 @@ describe('Integration', function() {
   it('should skip non files/dirs', async function () {
     this.timeout(10000)
 
-    const key = await spawnSend('test/fixtures/complex -r')
+    const key = await spawnSend('test/fixtures/complex')
     await spawnRcv(`${key} --skip-prompt`)
 
     expect(getOutFiles()).to.deep.equal(['complex'])

@@ -1,7 +1,7 @@
 `dcp` - Dat Copy
 ========
 
-> Remote file copy, powered by the Dat protocol.
+> Remote file transfer, powered by the Hypercore protocol.
 
 [![CircleCI branch](https://img.shields.io/circleci/project/github/tom-james-watson/dat-cp/master.svg)](https://circleci.com/gh/tom-james-watson/workflows/dat-cp/tree/master)
 [![npm](https://img.shields.io/npm/v/dat-cp.svg)](https://www.npmjs.com/package/dat-cp)
@@ -30,16 +30,16 @@
 * Send files to multiple colleagues - just send the generated public key via chat and they can receive the files on their machine.
 * Sync files between two physical computers on your local network, without needing to set up SSH access.
 * Easily send files to a friend without needing to create a zip and upload it the cloud.
-* Copy files to a remote server when you have shell access but not SSH, for example on a kubernetes pod.
+* Transfer files to a remote server when you have shell access but not SSH, for example on a kubernetes pod.
 * Share files between linux/macOS and Windows, which isn't exactly known for great SSH support.
 
 ## How `dcp` works
 
-`dcp` will create a dat archive for a specified set of files or directories and, using the generated public key, lets you download said archive from other hosts. Any data shared over the network is encrypted using the public key of the archive, meaning data access is limited to those who have access to said key. For more information on how Dat works, you can browse [the docs](https://docs.datproject.org/) or [read their whitepaper](https://github.com/datproject/docs/blob/master/papers/dat-paper.pdf).
+`dcp` will create a Dat archive for a specified set of files or directories and, using the generated public key, lets you download said archive from other hosts. Any data shared over the network is encrypted using the public key of the archive, meaning data access is limited to those who have access to said key. For more information on how Dat works, you can browse [the docs](https://docs.datproject.org/) or [read their whitepaper](https://github.com/datproject/docs/blob/master/papers/dat-paper.pdf).
 
 ### Advantages over plain [dat](https://github.com/datproject/dat)
 
-`dcp` is designed to have an API that is more reminiscent of `scp` and `rsync`. The standard cli `dat` program requires the additional mental overhead of understanding how the underlying Dat protocol works. `dat` forces you to share a single whole folder, whilst with `dcp` you can copy an arbitrary set of paths. `dat` also pollutes the filesystem with metadata files, whereas with `dcp` these are kept in-memory instead.
+`dcp` is designed to have an API that is more reminiscent of `scp` and `rsync`. The standard cli `dat` program requires the additional mental overhead of understanding how the underlying Dat protocol works. `dat` forces you to share a single whole folder, whilst with `dcp` you can transfer an arbitrary set of paths. `dat` also pollutes the filesystem with metadata files, whereas with `dcp` these are kept in-memory instead.
 
 ### Performance
 
@@ -68,7 +68,7 @@ Simply extract the zip and move the `dcp[.exe]` binary to a folder in your path,
 ## Usage
 
 ```
-Dat Copy - Remote file copy, powered by the Dat protocol.
+Dat Copy - Remote file transfer, powered by the Hypercore protocol.
 
 Usage: dcp [options] {files... | key}
   Options:
@@ -85,7 +85,7 @@ Examples:
 
 ### Sending files
 
-Pass an arbitrary set of files or directories to `dcp` to be copied. Copy the generated public key and use it to receive the files on a different host.
+Pass an arbitrary set of files or directories to `dcp` to be transferred. Copy the generated public key and use it to receive the files on a different host.
 
 ```bash
 dcp [-n] [-v] files ...

@@ -15,10 +15,10 @@ program.on('--help', function() {
 program
   .version(pkgJson.version)
   .usage('[options] {files... | key}')
-  .description('dcp - Remote file copy, powered by the Dat protocol.')
-  .option('-n | --dry-run', 'Show what would have been transferred')
-  .option('-P | --skip-prompt', 'Automatically download without a prompt')
-  .option('-v | --verbose', 'Verbose mode: output more information')
+  .description('dcp - Remote file transfer, powered by the Hypercore protocol')
+  .option('-n | --dry-run', 'Show what would have been transferred.')
+  .option('-P | --skip-prompt', 'Automatically download without a prompt.')
+  .option('-v | --verbose', 'Verbose mode: output more information.')
   .parse(process.argv)
 
 if (!process.argv.slice(2).length || !program.args.length) {

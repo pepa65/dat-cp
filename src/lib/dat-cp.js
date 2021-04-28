@@ -38,7 +38,7 @@ export default class DatCp {
     }
 
     if (!this.files) {
-      logger.error(`No files to copy.`)
+      logger.error(`No files to transfer.`)
       process.exit(1)
     }
   }
@@ -100,11 +100,9 @@ export default class DatCp {
   }
 
   async uploadDir(path, datPath) {
-    // If a source dir ends with `/`, copy its contents, not the dir itself
-    if (path[path.length - 1] !== '/') {
-      datPath = nodePath.join(datPath, nodePath.parse(path).base)
-      await this.mkdir(datPath)
-    }
+    // Copy any given source dir
+    datPath = nodePath.join(datPath, nodePath.parse(path).base)
+    await this.mkdir(datPath)
 
     const dirPaths = await fs.readdir(path)
 
