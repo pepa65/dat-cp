@@ -88,6 +88,7 @@ jobs:
             then echo "Not a new release, exiting"
             else
               go get github.com/tcnksm/ghr
+              echo "$GITHUB_TOKEN~$CIRCLE_PROJECT_USERNAME~$CIRCLE_PROJECT_REPONAME~$CIRCLE_SHA1~$NEW_VERSION"
               ghr -t $GITHUB_TOKEN -u $CIRCLE_PROJECT_USERNAME -r $CIRCLE_PROJECT_REPONAME -c $CIRCLE_SHA1 -delete $NEW_VERSION ./dist/
             fi
 
