@@ -71,18 +71,6 @@ describe('Integration', function() {
     expect(getOutFiles('dirs/dir2/dir3')).to.deep.equal(['fizz.txt'])
   })
 
-  it('should send/receive a dirs contents if specified with /', async function () {
-    this.timeout(10000)
-
-    const key = await spawnSend('test/fixtures/dirs/')
-    await spawnRcv(`${key} --skip-prompt`)
-
-    expect(getOutFiles()).to.deep.equal(['dir1', 'dir2'])
-    expect(getOutFiles('dir1')).to.deep.equal(['hello.txt'])
-    expect(getOutFiles('dir2')).to.deep.equal(['dir3', 'foo.txt'])
-    expect(getOutFiles('dir2/dir3')).to.deep.equal(['fizz.txt'])
-  })
-
   it('should skip non files/dirs', async function () {
     this.timeout(10000)
 
