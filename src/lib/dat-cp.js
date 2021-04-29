@@ -12,7 +12,7 @@ export default class DatCp {
 		this.options = options
 		this.files = 0
 		this.totalSize = 0
-	 }
+	}
 
 	async upload(paths) {
 		await this.ensurePathsValid(paths)
