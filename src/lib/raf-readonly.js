@@ -14,8 +14,8 @@ function RandomAccessFile (filename, opts = {}) {
 	}
 	RandomAccess.call(this)
 	if (opts.directory) filename = path.join(opts.directory, filename)
-  this.filename = filename
-  this.fd = 0
+	this.filename = filename
+	this.fd = 0
 }
 
 inherits(RandomAccessFile, RandomAccess)
