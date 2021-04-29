@@ -141,7 +141,9 @@ export default class DatCp {
 					process.exit(1)
 				}
 			}
-			catch (err) await fs.mkdir(path)
+			catch (err) {
+				await fs.mkdir(path)
+			}
 		}
 		this.countPath(path, stats)
 		const dirPaths = await this.readdir(path)
