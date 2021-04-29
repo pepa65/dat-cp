@@ -36,7 +36,9 @@ export default class DatCp {
 
 	async ensurePathValid(path) {
 		let stats
-		try stats = await fs.lstat(path)
+		try {
+			stats = await fs.lstat(path)
+		}
 		catch (err) {
 			logger.error(`${path}: No such file or directory.`)
 			process.exit(1)
