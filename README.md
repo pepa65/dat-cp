@@ -3,9 +3,9 @@
 > Remote file transfer, powered by the Hypercore protocol.
 
 [![CircleCI branch](https://img.shields.io/circleci/project/github/pepa65/datcp/master.svg)](https://circleci.com/gh/pepa65/workflows/datcp/tree/master)
-[![npm](https://img.shields.io/npm/v/datcp.svg)](https://www.npmjs.com/package/datcp)
-[![npm](https://img.shields.io/node/v/datcp.svg)](https://www.npmjs.com/package/datcp)
-[![NpmLicense](https://img.shields.io/npm/l/datcp.svg)](https://www.npmjs.com/package/datcp)
+[![npm](https://img.shields.io/npm/v/@pepa65/datcp.svg)](https://www.npmjs.com/package/@pepa65/datcp)
+[![npm](https://img.shields.io/node/v/@pepa65/datcp.svg)](https://www.npmjs.com/package/@pepa65/datcp)
+[![NpmLicense](https://img.shields.io/npm/l/@pepa65/datcp.svg)](https://www.npmjs.com/package/@pepa65/datcp)
 
 `dcp` copies files between hosts on a network using the peer-to-peer [Dat network](https://datproject.org/). `dcp` can be seen as an alternative to tools like `scp`, removing the need to configure SSH access between hosts. This lets you transfer files between two remote hosts, without you needing to worry about the specifics of how said hosts reach each other and regardless of whether hosts are behind NATs.
 
@@ -51,7 +51,7 @@ Here's a benchmark for moving a 396.12MB file from my personal computer to a rem
 ## Installation
 
 ```
-npm i -g datcp
+npm i -g @pepa65/datcp
 ```
 
 ### Installing without npm

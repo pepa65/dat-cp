@@ -1,5 +1,5 @@
 {
-  "name": "datcp",
+  "name": "@pepa65/datcp",
   "version": "0.8.1",
   "description": "Dat Copy v0.8.1 - Remote file transfer, powered by the Hypercore protocol",
   "engines": {
