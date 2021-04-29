@@ -31,7 +31,8 @@ describe('Integration', function() {
 
       try {
         await spawnRcv('62528020ce8814fd5f87c5a7d0402f78ee5f19fd6815c138152f43b306b8f8ef')
-      } catch (err) {
+      }
+			catch (err) {
         done()
       }
     })()
