@@ -1,41 +1,46 @@
-#! /usr/bin/env node
+#!/usr/bin/env node
 
-import program from 'commander'
+import cli from 'commander'
+import fs from 'fs'
 import send from './send'
 import logger from './lib/logger'
 import receive from './receive'
 import pkgJson from '../package.json'
 
-program.on('--help', function() {
-  console.log('Examples:')
-  console.log('    Send files/directories:       dcp foo_file bar_directory\n')
-  console.log('    Receive files/directories:    dcp <public key from sender>\n')
-})
+cli
+	.usage('[options] {path... | key}')
+	.description('Dat Copy v'+pkgJson.version+' - Remote file transfer, powered by the Hypercore protocol')
+	.helpOption('-h | --help', 'Just show this help text')
+	.option('-n | --dry-run', 'Show what would have been transferred')
+	.option('-p | --prompt', 'Download after being prompted')
+	.option('-P | --no-prompt', 'Automatically download without prompting')
+	.option('-v | --verbose', 'Verbose mode: show more information')
+	.version(pkgJson.version, '-V | --version', 'Just show the program version')
+	.on('--help', function() {
+		logger.info('\nExamples:')
+		logger.info('    Send files/directories:     dcp foo_file bar_directory')
+		logger.info('    Receive files/directories:  dcp <public key from sender>')
+	})
+	.parse(process.argv)
 
-program
-  .version(pkgJson.version)
-  .usage('[options] {files... | key}')
-  .description('Dat Copy v'+pkgJson.version+' - Remote file transfer, powered by the Hypercore protocol')
-  .option('-n, --dry-run', 'show what would have been transferred.')
-  .option('-P, --skip-prompt', 'automatically download without a prompt.')
-  .option('-v, --verbose', 'verbose mode: output more information.')
-  .parse(process.argv)
-
-if (!process.argv.slice(2).length || !program.args.length) {
-  program.outputHelp()
-  process.exit(1)
+if (!cli.args.length) {
+	cli.outputHelp()
+	logger.info('\nError: needed either one or more paths, or a key')
+	process.exit(1)
 }
 
-if (program.verbose) {
-  logger.enableDebug()
-}
+if (cli.verbose) logger.enableDebug()
 
-if (program.args[0].length === 64) {
-  receive(program.args[0], program)
-} else {
-  send(program.args, program)
+// Only receive if 1 arg of 64 chars and either no file or (no-)prompt given
+if (cli.args[0].length === 64 && cli.args.length === 1) {
+	if (cli.opts().prompt !== undefined || !fs.existsSync(cli.args[0]))
+		receive(cli.args[0], cli)
+	else send(cli.args, cli)
 }
-
-process.on('unhandledRejection', (reason, promise) => {
-  console.error({reason, promise})
-})
+else { // Error if (no-)prompt given but not a single 64-char key
+	if (cli.opts().prompt !== undefined) {
+		logger.info('Error: (no-)prompt implies receiving, which requires a single 64-character key')
+		process.exit(2)
+	}
+	else send(cli.args, cli)
+}

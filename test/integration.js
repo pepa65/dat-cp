@@ -20,7 +20,7 @@ describe('Integration', function() {
     this.timeout(10000)
 
     const key = await spawnSend('test/fixtures/simple/hello.txt')
-    await spawnRcv(`${key} --skip-prompt`)
+    await spawnRcv(`${key} --no-prompt`)
 
     expect(getOutFiles()).to.deep.equal(['hello.txt'])
   })
@@ -41,7 +41,7 @@ describe('Integration', function() {
     this.timeout(10000)
 
     const key = await spawnSend('test/fixtures/dirs')
-    await spawnRcv(`${key} --skip-prompt`)
+    await spawnRcv(`${key} --no-prompt`)
 
     expect(getOutFiles()).to.deep.equal(['dirs'])
     expect(getOutFiles('dirs')).to.deep.equal(['dir1', 'dir2'])
@@ -54,7 +54,7 @@ describe('Integration', function() {
     this.timeout(10000)
 
     const key = await spawnSend('test/fixtures/dirs')
-    await spawnRcv(`${key} --skip-prompt`)
+    await spawnRcv(`${key} --no-prompt`)
 
     expect(getOutFiles()).to.deep.equal(['dirs'])
     expect(getOutFiles('dirs')).to.deep.equal(['dir1', 'dir2'])
@@ -62,7 +62,7 @@ describe('Integration', function() {
     expect(getOutFiles('dirs/dir2')).to.deep.equal(['dir3', 'foo.txt'])
     expect(getOutFiles('dirs/dir2/dir3')).to.deep.equal(['fizz.txt'])
 
-    await spawnRcv(`${key} --skip-prompt`)
+    await spawnRcv(`${key} --no-prompt`)
 
     expect(getOutFiles()).to.deep.equal(['dirs'])
     expect(getOutFiles('dirs')).to.deep.equal(['dir1', 'dir2'])
@@ -75,7 +75,7 @@ describe('Integration', function() {
     this.timeout(10000)
 
     const key = await spawnSend('test/fixtures/complex')
-    await spawnRcv(`${key} --skip-prompt`)
+    await spawnRcv(`${key} --no-prompt`)
 
     expect(getOutFiles()).to.deep.equal(['complex'])
     expect(getOutFiles('complex')).to.deep.equal(['hello.txt'])

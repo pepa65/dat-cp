@@ -1,11 +1,11 @@
-# `dcp' - Dat Copy v0.8.0
+# `dcp' - Dat Copy v0.8.1
 
 > Remote file transfer, powered by the Hypercore protocol.
 
-[![CircleCI branch](https://img.shields.io/circleci/project/github/tom-james-watson/dat-cp/master.svg)](https://circleci.com/gh/tom-james-watson/workflows/dat-cp/tree/master)
-[![npm](https://img.shields.io/npm/v/dat-cp.svg)](https://www.npmjs.com/package/dat-cp)
-[![npm](https://img.shields.io/node/v/dat-cp.svg)](https://www.npmjs.com/package/dat-cp)
-[![NpmLicense](https://img.shields.io/npm/l/dat-cp.svg)](https://www.npmjs.com/package/dat-cp)
+[![CircleCI branch](https://img.shields.io/circleci/project/github/pepa65/datcp/master.svg)](https://circleci.com/gh/pepa65/workflows/datcp/tree/master)
+[![npm](https://img.shields.io/npm/v/datcp.svg)](https://www.npmjs.com/package/datcp)
+[![npm](https://img.shields.io/node/v/datcp.svg)](https://www.npmjs.com/package/datcp)
+[![NpmLicense](https://img.shields.io/npm/l/datcp.svg)](https://www.npmjs.com/package/datcp)
 
 `dcp` copies files between hosts on a network using the peer-to-peer [Dat network](https://datproject.org/). `dcp` can be seen as an alternative to tools like `scp`, removing the need to configure SSH access between hosts. This lets you transfer files between two remote hosts, without you needing to worry about the specifics of how said hosts reach each other and regardless of whether hosts are behind NATs.
 
@@ -20,17 +20,13 @@
 - [Usage](#usage)
 - [Development](#development)
 
-### Example
-
-![dcp example](./images/example.gif)
-
 ### Use cases
 
 * Send files to multiple colleagues - just send the generated public key via chat and they can receive the files on their machine.
 * Sync files between two physical computers on your local network, without needing to set up SSH access.
 * Easily send files to a friend without needing to create a zip and upload it the cloud.
 * Transfer files to a remote server when you have shell access but not SSH, for example on a kubernetes pod.
-* Share files between linux/macOS and Windows, which isn't exactly known for great SSH support.
+* Share files between Linux/macOS and Windows, which isn't exactly known for great SSH support.
 
 ## How `dcp` works
 
@@ -55,32 +51,33 @@ Here's a benchmark for moving a 396.12MB file from my personal computer to a rem
 ## Installation
 
 ```
-npm i -g dat-cp
+npm i -g datcp
 ```
 
 ### Installing without npm
 
-Alternatively, packaged binaries are available on [the releases page](https://github.com/tom-james-watson/dat-cp/releases). These bundle all dependencies into a single standalone binary.
+Alternatively, packaged binaries are available on [the releases page](https://github.com/pepa65/datcp/releases). These bundle all dependencies into a single standalone binary.
 
 Simply extract the zip and move the `dcp[.exe]` binary to a folder in your path, e.g. `/usr/local/bin`.
 
 ## Usage
 
 ```
-Usage: dcp [options] {files... | key}
+Usage: dcp [options] {path... | key}
 
-Dat Copy v0.8.0 - Remote file transfer, powered by the Hypercore protocol
+Dat Copy v0.8.1 - Remote file transfer, powered by the Hypercore protocol
 
 Options:
-  -V, --version       output the version number
-  -n | --dry-run      show what would have been transferred.
-  -P | --skip-prompt  automatically download without a prompt.
-  -v | --verbose      verbose mode: output more information.
-  -h, --help          display help for command
+  -n | --dry-run    Show what would have been transferred
+  -p | --prompt     Download after being prompted
+  -P | --no-prompt  Automatically download without prompting
+  -v | --verbose    Verbose mode: show more information
+  -V | --version    Just show the program version
+  -h | --help       Just show this help text
 
 Examples:
-    Send files/directories:       dcp foo_file bar_directory
-    Receive files/directories:    dcp <public key from sender>
+    Send files/directories:     dcp foo_file bar_directory
+    Receive files/directories:  dcp <public key from sender>
 ```
 
 ### Sending files
@@ -99,12 +96,12 @@ dcp [-n] [-v] files ...
 Invoke `dcp` with the generated public key to receive the copied files.
 
 ```bash
-dcp [-n] [-v] [-P] <generated public key>
+dcp [-n] [-v] [-P|-p] <generated public key>
 ```
 
 * Use `-n`/`--dry-run` to see what files would have been received
 * Use `-v`/`--verbose` to output more information
-* Use `-P`/`--skip-prompt` to skip the download prompt
+* Use `-P`/`--no-prompt` to skip the download prompt, or `-p`/`--prompt` to get it (default)
 
 ## Development
 

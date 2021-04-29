@@ -1,7 +1,7 @@
 {
-  "name": "dat-cp",
-  "version": "0.8.0",
-  "description": "Dat Copy v0.8.0 - Remote file transfer, powered by the Hypercore protocol",
+  "name": "datcp",
+  "version": "0.8.1",
+  "description": "Dat Copy v0.8.1 - Remote file transfer, powered by the Hypercore protocol",
   "engines": {
     "node": ">=6.0.0"
   },
@@ -15,7 +15,7 @@
     "test": "mocha --require babel-core/register --exit && npm run eslint"
   },
   "bin": {
-    "dat-cp": "build/dcp.js",
+    "datcp": "build/dcp.js",
     "dcp": "build/dcp.js"
   },
   "pkg": {
@@ -44,9 +44,9 @@
     ]
   },
   "author": "Tom Watson <tom@tomjwatson.com>",
-  "repository": "pepa65/dat-cp",
-  "homepage": "https://github.com/pepa65/dat-cp",
-  "bugs": "https://github.com/pepa65/dat-cp/issues",
+  "repository": "pepa65/datcp",
+  "homepage": "https://github.com/pepa65/datcp",
+  "bugs": "https://github.com/pepa65/datcp/issues",
   "license": "MIT",
   "dependencies": {
     "append-tree": "^2.4.4",
@@ -61,7 +61,7 @@
     "random-access-storage": "^1.4.1"
   },
   "devDependencies": {
-    "babel-cli": "6.26.0",
+    "babel-cli": "^6.26.0",
     "babel-core": "6.26.3",
     "babel-eslint": "8.2.6",
     "babel-preset-env": "1.7.0",
@@ -70,7 +70,7 @@
     "cross-zip-cli": "1.0.0",
     "eslint": "5.4.0",
     "eslint-config-tomjwatson": "0.2.1",
-    "mocha": "^8.0.1",
+    "mocha": "^8.3.2",
     "pkg": "^4.4.8",
     "sinon": "7.1.1"
   }

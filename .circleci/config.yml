@@ -43,7 +43,7 @@ jobs:
           command: npm run package
       - run:
           name: Save current version number
-          command: npm show dat-cp version >current-version
+          command: npm show datcp version >current-version
       - run:
           name: Save new version number
           command: grep '"version":' package.json |cut -d'"' -f4 >new-version
