@@ -43,7 +43,7 @@ jobs:
           command: npm run package
       - run:
           name: Save current version number
-          command: echo "0.8.0" >current-version
+          command: npm show @pepa65/datcp version >current-version
       - run:
           name: Save new version number
           command: grep '"version":' package.json |cut -d'"' -f4 >new-version
