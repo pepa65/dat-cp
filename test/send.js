@@ -54,7 +54,7 @@ describe('Send', function() {
 		expect(this.infoSpy.firstCall.args[0].includes('Total: 1 files')).to.be.true
 		expect(this.exitSpy.called).to.be.false
 	})
-/*
+	/*
 	it('should dry-run upload single file', (done) => {
 		(async () => {
 			const dat = await Dat()
@@ -72,7 +72,7 @@ describe('Send', function() {
 			}
 		})()
 	})
-*/
+	*/
 	it('should upload dir with recursive', async () => {
 		const dat = await Dat()
 		const sendDatCp = new DatCp(dat, {})
@@ -99,7 +99,7 @@ describe('Send', function() {
 		expect(this.infoSpy.firstCall.args[0].includes('Total: 6 files')).to.be.true
 		expect(this.exitSpy.called).to.be.false
 	})
-/*
+	/*
 	it('should dry-run upload directories with recursive', (done) => {
 		(async () => {
 			const dat = await Dat()
@@ -116,7 +116,7 @@ describe('Send', function() {
 			}
 		})()
 	})
-*/
+	*/
 	it('should skip non files/dirs', async () => {
 		const dat = await Dat()
 		const sendDatCp = new DatCp(dat, {})
