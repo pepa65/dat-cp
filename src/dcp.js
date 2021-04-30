@@ -9,11 +9,11 @@ import pkgJson from '../package.json'
 
 cli
 	.usage('[options] {path... | key}')
-	.description('Dat Copy v'+pkgJson.version+' - Remote file transfer, powered by the Hypercore protocol')
+	.description('Dat Copy v'+pkgJson.version+' - Remote file transfer with the Dat protocol')
 	.helpOption('-h | --help', 'Just show this help text')
 	.option('-n | --dry-run', 'Show what would have been transferred')
-	.option('-p | --prompt', 'Download after being prompted')
-	.option('-P | --no-prompt', 'Automatically download without prompting')
+	.option('-p | --prompt', 'Receive after confirmation prompt')
+	.option('-P | --no-prompt', 'Receive without prompt')
 	.option('-v | --verbose', 'Verbose mode: show more information')
 	.version(pkgJson.version, '-V | --version', 'Just show the program version')
 	.on('--help', function() {

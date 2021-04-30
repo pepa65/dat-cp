@@ -29,7 +29,7 @@ export default class DatCp {
 		this.count = 0
 		for (const path of paths) await this.ensurePathValid(path)
 		if (!this.files) {
-			logger.error(`No files to transfer.`)
+			logger.error('No files to transfer.')
 			process.exit(1)
 		}
 	}

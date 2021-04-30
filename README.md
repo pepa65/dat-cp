@@ -1,6 +1,6 @@
-# `dcp' - Dat Copy v0.8.1
+# `dcp' - Dat Copy v0.8.2
 
-> Remote file transfer, powered by the Hypercore protocol.
+> Remote file transfer with the Dat protocol
 
 [![CircleCI branch](https://img.shields.io/circleci/project/github/pepa65/datcp/master.svg)](https://circleci.com/gh/pepa65/workflows/datcp/tree/master)
 [![npm](https://img.shields.io/npm/v/@pepa65/datcp.svg)](https://www.npmjs.com/package/@pepa65/datcp)
@@ -65,12 +65,12 @@ Simply extract the zip and move the `dcp[.exe]` binary to a folder in your path,
 ```
 Usage: dcp [options] {path... | key}
 
-Dat Copy v0.8.1 - Remote file transfer, powered by the Hypercore protocol
+Dat Copy v0.8.2 - Remote file transfer with the Dat protocol
 
 Options:
   -n | --dry-run    Show what would have been transferred
-  -p | --prompt     Download after being prompted
-  -P | --no-prompt  Automatically download without prompting
+  -p | --prompt     Receive after confirmation prompt
+  -P | --no-prompt  Receive automatically, without prompt
   -v | --verbose    Verbose mode: show more information
   -V | --version    Just show the program version
   -h | --help       Just show this help text

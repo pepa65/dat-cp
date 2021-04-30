@@ -26,7 +26,7 @@ export default function(options = {}) {
 		Dat(storage('.'), {...options}, async (err, dat) => {
 			if (err) {
 				logger.error(err.toString())
-				logger.error(`Failed to initialize dat archive.`)
+				logger.error('Failed to initialize dat archive.')
 				process.exit(1)
 			}
 			dat.trackStats()

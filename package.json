@@ -1,7 +1,7 @@
 {
   "name": "@pepa65/datcp",
-  "version": "0.8.1",
-  "description": "Dat Copy v0.8.1 - Remote file transfer, powered by the Hypercore protocol",
+  "version": "0.8.2",
+  "description": "Dat Copy v0.8.2 - Remote file transfer with the Dat protocol",
   "engines": {
     "node": ">=6.0.0"
   },
@@ -12,7 +12,7 @@
     "package": "rm -rf builds && npm run pkg && ./package.sh",
     "pkg": "pkg package.json -o releases/dcp",
     "prepublish": "npm run build",
-    "test": "mocha --require babel-core/register --exit #&& npm run eslint"
+    "test": "mocha --require babel-core/register --exit && npm run eslint"
   },
   "bin": {
     "datcp": "build/dcp.js",
